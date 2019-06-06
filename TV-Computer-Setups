@@ -1,0 +1,62 @@
+Mac Mini
+---------------------
+username / pw is in WIAG keepass file
+
+-Setup to autologin as that account, screensaver/lock disabled
+-Account setup to automatically run an apple script app (see zip file in this folder) that starts Chrome and presses Control-Apple-F to get into full screen kiosk mode
+-Chrome homepage setup to be one of the HTM files in this directory
+-Each HTM file automatically loads for 5 seconds then refreshes by loading the next file
+-Mac Mini and LG TV setup via system preferences to power off at 6PM and on at 7:30AM weekdays
+-LG TVs have the 2 hour auto-power off disabled via the service menu. Info on doing that is available here: http://openlgtv.org.ru/wiki/index.php/Access_hidden_service_menus_/_modes - Here are the steps:
+1) You need:
+- Android smartphone with Infrared
+- Android APP "Smart IR Remote Anymote" from google play  Smart IR Remote - AnyMote -
+2) Open app, create a new remote: TV -> LG brand -> "SERVICE REMOTE" type -> press the "use internal android IR device" button.
+3) Aim with smartphone infrared emiter to infrared receiver of the TV and press "IN_START" in the virtual remote.
+4) It will ask a password, which is "0413". IT IS VERY IMPORTANT TO TYPE THIS PASSWORD WITH ORIGINAL MAGIC REMOTE.
+4) You will access the LG service hidden menu. Inside that menu, go to "system 1" and change the "2 hours off (On timer)" setting to off.
+
+HP Pucks
+----------------------
+1.	Power Cycle
+	a.	System start up
+		i.	On power up hold F2 or Esc
+		ii.	Enter BIOS Settings
+		iii.	Enter power settings
+			1.	If asked, use 1224 or 0000 or oh-tech (else check with IT)
+			2.	MTWRF power up at approximately 9:30a
+	b.	System shutdown
+		i.	Task Scheduler
+		ii.	Create Basic Task
+		iii.	Daily (17:30:00 is a useful time to shutdown)
+		iv.	Start a program
+		v.	Program/script:
+			1.	C:\Windows\system32\shutdown.exe
+		vi.	Add arguments:
+			1.	/s
+2.	Registry Settings (If connected to LAN this process is moot)
+	a.	Windows-key + r
+		i.	regedit
+	b.	Path: Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System
+		i.	Delete: legalnoticecaption 
+		ii.	Delete: legalnoticetext
+3.	Displays
+	a.	Power Settings
+		i.	Turn off display: Never
+		ii.	Change any setting relating to sleep or energy saving to: Never
+4.	Hardware, etc.
+	a.	Useful to use wireless rather than Ethernet, connection to LAN will push registry settings
+5.	Enter “God View”
+	a.	Start
+		i.	All Programs
+		ii.	Chrome
+		1.	Make a shortcut
+	b.	Open Chrome on startup
+		i.	Windows-key + r
+			1.	shell:startup
+			2.	Move Chrome shortcut to startup file
+			3.	Right click chrome shortcut in startup file
+				a.	Properties>Target> After path type exactly: 
+					i.	 –start-fullscreen
+					ii.	There is a space character before the –start-fullscreen, without this space character the tag isn’t recognized
+					iii.	Ex. "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --start-fullscreen
